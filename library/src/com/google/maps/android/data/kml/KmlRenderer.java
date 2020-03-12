@@ -42,6 +42,8 @@ public class KmlRenderer  extends Renderer {
 
     private ArrayList<KmlContainer> mContainers;
 
+    private double sizeMultiplier = 3;
+
     /* package */ KmlRenderer(GoogleMap map, Context context) {
         super(map, context);
         mGroundOverlayUrls = new ArrayList<>();
@@ -310,6 +312,7 @@ public class KmlRenderer  extends Renderer {
     private void scaleBitmap(KmlStyle style, HashMap<KmlPlacemark, Object> placemarks,
                              KmlPlacemark placemark) {
         double bitmapScale = style.getIconScale();
+        bitmapScale = bitmapScale * sizeMultiplier;
         String bitmapUrl = style.getIconUrl();
         Bitmap bitmapImage = getImagesCache().get(bitmapUrl);
         BitmapDescriptor scaledBitmap = scaleIcon(bitmapImage, bitmapScale);
